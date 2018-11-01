@@ -1,5 +1,6 @@
 package oauth2;
 
+import helper.Common;
 import helper.TokenData;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -21,8 +22,19 @@ public class TokenStorageDatabase {
     public void addToken(TokenData token) {
         tokens.add(token);
     }
+
     public boolean isValidToken(String token) {
-        return tokens.contains(token);
+        for (Iterator<TokenData> it = tokens.iterator(); it.hasNext(); ) {
+            TokenData tokenData = it.next();
+            if (tokenData.getAccessToken().equals(token)) {
+                Long currentTime = System.currentTimeMillis();
+                if (currentTime - tokenData.getAccessTokenCreationTime() > Common.accessTokenExpirationTime) {
+                    return false;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     public Integer getId() {
