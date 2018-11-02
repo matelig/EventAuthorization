@@ -45,18 +45,9 @@ public class AccessTokenEndpoint {
                 return buildInvalidClientSecretResponse();
             }
 
-            if (oauthRequest.getParam(OAuth.OAUTH_GRANT_TYPE).equals(GrantType.AUTHORIZATION_CODE.toString())) {
-                if (!checkAuthCode(oauthRequest.getParam(OAuth.OAUTH_CODE))) {
-                    return buildBadAuthCodeResponse();
-                }
-            } else if (oauthRequest.getParam(OAuth.OAUTH_GRANT_TYPE).equals(GrantType.PASSWORD.toString())) {
-                if (!checkUserPass(oauthRequest.getUsername(), oauthRequest.getPassword())) {
-                    return buildInvalidUserPassResponse();
-                }
-            } else if (oauthRequest.getParam(OAuth.OAUTH_GRANT_TYPE).equals(GrantType.REFRESH_TOKEN.toString())) {
+            if (!oauthRequest.getParam(OAuth.OAUTH_GRANT_TYPE).equals(GrantType.PASSWORD.toString())) {
                 buildInvalidUserPassResponse();
             }
-
 
             TokenData tokenData = new TokenData();
             Long currentDateTime = System.currentTimeMillis();
