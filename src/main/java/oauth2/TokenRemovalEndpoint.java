@@ -22,6 +22,7 @@ public class TokenRemovalEndpoint {
 
     @GET
     @Produces("text/html")
+    @Path("/accessToken")
     public Response validateAccessToken(@Context HttpServletRequest request) throws OAuthSystemException {
 
         try {
