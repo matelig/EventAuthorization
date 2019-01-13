@@ -37,6 +37,17 @@ public class TokenStorageDatabase {
         return false;
     }
 
+    public boolean removeTokenData(String token) {
+        for (Iterator<TokenData> it = tokens.iterator(); it.hasNext(); ) {
+            TokenData tokenData = it.next();
+            if (tokenData.getAccessToken().equals(token)) {
+                it.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Integer getId() {
         return tokens.size() + 1;
     }
