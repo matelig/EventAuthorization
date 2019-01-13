@@ -41,7 +41,7 @@ public class TokenStorageDatabase {
         for (Iterator<TokenData> it = tokens.iterator(); it.hasNext(); ) {
             TokenData tokenData = it.next();
             if (tokenData.getAccessToken().equals(token)) {
-                tokens.remove(tokenData);
+                it.remove();
                 return true;
             }
         }
