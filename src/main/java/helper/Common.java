@@ -7,7 +7,7 @@ import java.security.Key;
 
 public class Common {
     public static Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    public static Long accessTokenExpirationTime = 600000L; //10 minutes
+    public static Long accessTokenExpirationTime = 86400000L; //10 minutes
     public static Long refreshTokenExpirationTime = 604800000L; //one week
     public static String CLIENT_ID = "taipaiOauth2Test";
     public static String CLIENT_SECRET = "taipaiOauth2ClientSectent";
